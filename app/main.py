@@ -93,3 +93,7 @@ if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", "8000"))  # Railway sets PORT; default 8000 locally
     uvicorn.run("app.main:app", host="0.0.0.0", port=port, reload=False)
+
+import sys
+print(f"[BOOT] PORT={os.getenv('PORT')}", file=sys.stderr)
+print(f"[BOOT] DATA_ROOT={settings.DATA_ROOT} exists={os.path.isdir(settings.DATA_ROOT)}", file=sys.stderr)
