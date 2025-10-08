@@ -18,6 +18,9 @@ from .routes_admin import router as admin_router
 
 app = FastAPI()
 
+# Make sure DATA_ROOT exists BEFORE you mount it
+os.makedirs(settings.DATA_ROOT, exist_ok=True)
+
 # --- DEBUG: print what we're about to mount
 print("[startup] DATA_ROOT =", settings.DATA_ROOT)
 print("[startup] DATA_URL_PREFIX =", settings.DATA_URL_PREFIX)
