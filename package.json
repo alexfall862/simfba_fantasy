@@ -1,0 +1,15 @@
+{
+  "name": "simfba-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "run": "node server.js --once"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.645.0",
+    "csv-parse": "^5.5.6",
+    "express": "^4.19.2",
+    "node-fetch": "^3.3.2"
+  }
+}
