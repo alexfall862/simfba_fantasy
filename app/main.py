@@ -73,7 +73,7 @@ app.include_router(public.router, tags=["public"])
 app.include_router(admin.router, tags=["admin"])
 
 # Static + Templates
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
+app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
 # Public viewer
