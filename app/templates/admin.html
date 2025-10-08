@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Admin</h1>
+
+<div class="card">
+  <h2>Run Sync</h2>
+
+  <div class="grid">
+    <label>Admin Token
+      <input type="password" id="run-token" placeholder="Enter token (if required)">
+    </label>
+
+    <label>Start Year
+      <input type="number" id="start-year" min="2020" value="2025">
+    </label>
+
+    <label>Years Ahead
+      <input type="number" id="years-ahead" min="0" max="10" value="0">
+    </label>
+
+    <label>Max Week
+      <input type="number" id="max-week" min="0" max="30" value="20">
+    </label>
+  </div>
+
+  <button id="run-sync">Run</button>
+  <pre id="run-result" class="log"></pre>
+</div>
+
+<div class="card">
+  <h2>Force Reprocess (no downloads)</h2>
+  <input id="run-token" type="password" placeholder="Admin token" />
+
+  <select id="re-sport">
+    <option value="">Both</option>
+    <option value="nfl">NFL</option>
+    <option value="cfb">CFB</option>
+  </select>
+
+  <input id="re-year" type="number" placeholder="(optional year)" />
+  <label><input id="re-force" type="checkbox" checked /> Force</label>
+  <button id="reprocess">Reprocess</button>
+
+  <pre id="reprocess-result"></pre>
+</div>
+
+
+<script src="{{ url_for('static', path='/js/admin.js') }}"></script>
+{% endblock %}

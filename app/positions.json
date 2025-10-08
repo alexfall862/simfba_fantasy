@@ -1,0 +1,18 @@
+{
+  "shared": {
+    "positions": ["QB", "RB", "FB", "WR", "TE", "K"],
+    "columnsByPosition": {
+      "QB":      ["ID", "Team", "TeamID", "FullName","Position", "Calc_PassingPoints", "Calc_RushingPoints", "Calc_ReceivingPoints", "Calc_KickingPoints", "Calc_TotalPoints"], 
+      "RB":      ["ID", "Team", "TeamID", "FullName","Position", "Calc_PassingPoints", "Calc_RushingPoints", "Calc_ReceivingPoints", "Calc_KickingPoints", "Calc_TotalPoints"], 
+      "FB":      ["ID", "Team", "TeamID", "FullName","Position", "Calc_PassingPoints", "Calc_RushingPoints", "Calc_ReceivingPoints", "Calc_KickingPoints", "Calc_TotalPoints"], 
+      "WR":      ["ID", "Team", "TeamID", "FullName","Position", "Calc_PassingPoints", "Calc_RushingPoints", "Calc_ReceivingPoints", "Calc_KickingPoints", "Calc_TotalPoints"], 
+      "TE":      ["ID", "Team", "TeamID", "FullName","Position", "Calc_PassingPoints", "Calc_RushingPoints", "Calc_ReceivingPoints", "Calc_KickingPoints", "Calc_TotalPoints"],
+      "K":       ["ID", "Team", "TeamID", "FullName","Position", "Calc_PassingPoints", "Calc_RushingPoints", "Calc_ReceivingPoints", "Calc_KickingPoints", "Calc_TotalPoints"]
+    },
+    "defaultColumns": ["ID", "Team", "GameID"]
+  },
+  "team":{
+    "columns": ["TeamID", "Team","Calc_DefensiveScore", "Calc_ReturnScore", "Calc_PointsScore", "Calc_TotalTeamScore"]
+  },
+  "overrides": { "nfl": {}, "cfb": {} }
+}

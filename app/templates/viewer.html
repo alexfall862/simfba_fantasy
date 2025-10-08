@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Stats Viewer</h1>
+
+<div id="simfba-viewer" class="viewer">
+  <div class="sv-controls">
+    <div class="sv-row">
+      <div class="sv-group">
+        <label>Sport</label>
+        <div class="sv-toggle">
+          <button data-sport="nfl" class="sv-toggle-btn active">NFL</button>
+          <button data-sport="cfb" class="sv-toggle-btn">CFB</button>
+        </div>
+      </div>
+
+      <div class="sv-group">
+        <label>Year</label>
+        <div class="sv-nav">
+          <button class="sv-year-prev">◀</button>
+          <select class="sv-year-select"></select>
+          <button class="sv-year-next">▶</button>
+        </div>
+      </div>
+
+      <div class="sv-group">
+        <label>Week</label>
+        <div class="sv-nav">
+          <button class="sv-week-prev">◀</button>
+          <select class="sv-week-select"></select>
+          <button class="sv-week-next">▶</button>
+        </div>
+      </div>
+
+      <div class="sv-group">
+        <label>View</label>
+        <div class="sv-toggle">
+          <button data-view="team" class="sv-toggle-btn active">Team</button>
+          <button data-view="player" class="sv-toggle-btn">Player</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Position chips row (multi-select; inert when Team view) -->
+    <div id="simfba-position-bar" class="simfba-chip-row"></div>
+
+    <div class="sv-row">
+      <div class="sv-group">
+        <label>Search (ID)</label>
+        <input class="sv-search" type="text" placeholder="Enter ID…" />
+      </div>
+    </div>
+  </div>
+
+  <div class="sv-table-wrap">
+    <table class="sv-table">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+    <div class="sv-empty" style="display:none;">No data for this selection.</div>
+  </div>
+
+  <div class="sv-pager">
+    <button class="sv-page-prev">Prev</button>
+    <span class="sv-page-info"></span>
+    <button class="sv-page-next">Next</button>
+  </div>
+</div>
+
+<script>
+  window.SIMFBA_COLUMNS = {
+    shared: {
+      team: ["TeamID","Team","Calc_TotalTeamScore","Calc_DefensiveScore","Calc_ReturnScore","Calc_PointsScore"]
+    },
+    overrides: {
+      nfl: { team: ["TeamID","Team","Calc_TotalTeamScore","Calc_DefensiveScore","Calc_ReturnScore","Calc_PointsScore"] },
+      cfb: { team: ["TeamID","Team","Calc_TotalTeamScore","Calc_DefensiveScore","Calc_ReturnScore","Calc_PointsScore"] }
+    }
+  };
+</script>
+<script>
+  // Position presets (edit later as needed)
+
+  window.SIMFBA_POSITIONS = {
+    "shared": {
+      "positions": ["QB", "RB", "FB", "WR", "TE", "K"],
+      "columnsByPosition": {
+        "QB": ["ID", "Team", "TeamID", "FullName", "Position", "Calc_TotalPoints", "Calc_PassingPoints", "Calc_RushingPoints", "Calc_ReceivingPoints", "Calc_KickingPoints"],
+        "RB": ["ID", "Team", "TeamID", "FullName", "Position", "Calc_TotalPoints", "Calc_PassingPoints", "Calc_RushingPoints", "Calc_ReceivingPoints", "Calc_KickingPoints"],
+        "FB": ["ID", "Team", "TeamID", "FullName", "Position", "Calc_TotalPoints", "Calc_PassingPoints", "Calc_RushingPoints", "Calc_ReceivingPoints", "Calc_KickingPoints"],
+        "WR": ["ID", "Team", "TeamID", "FullName", "Position", "Calc_TotalPoints", "Calc_PassingPoints", "Calc_RushingPoints", "Calc_ReceivingPoints", "Calc_KickingPoints"],
+        "TE": ["ID", "Team", "TeamID", "FullName", "Position", "Calc_TotalPoints", "Calc_PassingPoints", "Calc_RushingPoints", "Calc_ReceivingPoints", "Calc_KickingPoints"],
+        "K":  ["ID", "Team", "TeamID", "FullName", "Position", "Calc_TotalPoints", "Calc_PassingPoints", "Calc_RushingPoints", "Calc_ReceivingPoints", "Calc_KickingPoints"],
+        "team": ["TeamID", "Team", "Calc_DefensiveScore", "Calc_ReturnScore", "Calc_PointsScore", "Calc_TotalTeamScore"]
+      },
+      "defaultColumns": ["ID", "Team", "GameID"]
+    },
+    "overrides": { "nfl": {}, "cfb": {} }
+  };
+</script>
+<script src="{{ url_for('static', path='/js/viewer.js') }}"></script>
+{% endblock %}
