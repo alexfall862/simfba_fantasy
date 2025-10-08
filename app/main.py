@@ -6,7 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
 from .routers import public, admin
 from pathlib import Path
-
+from starlette.middleware.proxy_headers import ProxyHeadersMiddleware
+from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
 
 
 from dotenv import load_dotenv; load_dotenv()
@@ -17,6 +18,8 @@ from fastapi import FastAPI
 from .routes_admin import router as admin_router
 
 app = FastAPI()
+app.add_middleware(ProxyHeadersMiddleware, trusted_hosts="*")
+app.add_middleware(HTTPSRedirectMiddleware)
 
 # Make sure DATA_ROOT exists BEFORE you mount it
 os.makedirs(settings.DATA_ROOT, exist_ok=True)
