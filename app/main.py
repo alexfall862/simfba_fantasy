@@ -83,3 +83,10 @@ def viewer_page(request: Request):
 def admin_page(request: Request):
     # Admin is token-protected at the API layer; this page just provides UI
     return templates.TemplateResponse("admin.html", {"request": request})
+
+#launch
+if __name__ == "__main__":
+    import os
+    import uvicorn
+    port = int(os.getenv("PORT", "8000"))  # Railway sets PORT; default 8000 locally
+    uvicorn.run("app.main:app", host="0.0.0.0", port=port, reload=False)
