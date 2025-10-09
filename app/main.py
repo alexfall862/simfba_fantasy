@@ -7,6 +7,7 @@ from .config import settings
 from .routers import public, admin
 from pathlib import Path
 from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
+from .startup import seed_reference_files
 
 
 from dotenv import load_dotenv; load_dotenv()
@@ -26,6 +27,12 @@ os.makedirs(settings.DATA_ROOT, exist_ok=True)
 print("[startup] DATA_ROOT =", settings.DATA_ROOT)
 print("[startup] DATA_URL_PREFIX =", settings.DATA_URL_PREFIX)
 print("[startup] DATA_ROOT exists? ", Path(settings.DATA_ROOT).exists())
+
+@app.on_event("startup")
+def _seed_volume():
+    base_dir = os.path.dirname(__file__)
+    seed_reference_files(settings.DATA_ROOT, base_dir)
+
 
 app.mount(
     settings.DATA_URL_PREFIX,  # should be "/data"

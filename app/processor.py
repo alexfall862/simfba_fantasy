@@ -393,6 +393,29 @@ def _write_if_changed(path: str, content_bytes: bytes) -> Tuple[str, Optional[st
     return ("updated" if existed else "new", sha_remote)
 
 
+
+
+# app/processor.py (helpers)
+def _nfl_teams_csv_path() -> str:
+    p = getattr(settings, "NFL_TEAMS_CSV", None)
+    if p and os.path.isfile(p):
+        return p
+    vendored = os.path.join(os.path.dirname(__file__), "assets", "teams", "nflteamids.csv")
+    if os.path.isfile(vendored):
+        return vendored
+    return os.path.join(settings.DATA_ROOT, "teams", "nflteamids.csv")
+
+def _cfb_teams_csv_path() -> str:
+    p = getattr(settings, "CFB_TEAMS_CSV", None)
+    if p and os.path.isfile(p):
+        return p
+    vendored = os.path.join(os.path.dirname(__file__), "assets", "teams", "cfbteamids.csv")
+    if os.path.isfile(vendored):
+        return vendored
+    return os.path.join(settings.DATA_ROOT, "teams", "cfbteamids.csv")
+
+
+
 # ---------- Reprocess RAW -> PROCESSED ----------
 
 def reprocess_raw(
